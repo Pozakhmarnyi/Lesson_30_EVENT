@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      span {
+        box-sizing: border-box;
+        /* // Андрійю, якщо дивитимешся на моє завдання, то скажи, чому не задається розміри ??? Ці що нижче*/
+        width: 300px;
+        height: 150px;
+        border: 2px solid black;
+        padding: 10px;
+      }
+      div {
+        padding: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Task 1</h2>
+
+    <div id="div">
+      White sam text
+    </div>
+    <textarea id="textarea"> </textarea>
+
+    <script>
+      let text = document.getElementById("div").innerHTML;
+
+      document.body.onkeydown = showKeyEvent;
+      document.getElementById("textarea").style.display = "none";
+
+      function showKeyEvent(event) {
+        console.log(event);
+        // event.preventDefault();   --- можна активувати - "выключить поведение по умолчанию"
+
+        if (event.key === "c" && event.ctrlKey === true) {
+          // переключаю фукус із div  на textarea
+
+          document.getElementById("textarea").value = text;
+
+          // Приховую div
+          document.getElementById("div").style.display = "none";
+          document.getElementById("textarea").style.display = "block";
+        }
+
+        // переключаю фукус із textarea  на div
+
+        if (event.key === "," && event.ctrlKey === true) {
+          text = document.getElementById("textarea").value;
+          document.getElementById("div").innerHTML = text;
+
+          // Приховую textarea
+          document.getElementById("div").style.display = "block";
+          document.getElementById("textarea").style.display = "none";
+        }
+      }
+    </script>
+
+    <h2>Task 2</h2>
+    <div>
+      <span id="cause" onclick="sortName()">why people died</span
+      ><span id="died" onclick="sortNumb()">what a chance</span>
+    </div>
+    <div id="listDeth"></div>
+    <script src="event.js"></script>
+
+    <div class="hello"></div>
+  </body>
+</html>
